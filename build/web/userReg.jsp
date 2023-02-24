@@ -13,10 +13,6 @@
     </head>
     <body>
            <input type="hidden" id="status" value="<%=request.getAttribute("status") %>">
-        
-        <div class="container">
-            <div class="regbox box">
-                <img class="avatar" src="StaffImg/RegLogo.png">
                 
               <form action="userReg" method="post">
                <center>
@@ -37,7 +33,7 @@
         
     <button type="submit">Register</button>&ensp;&ensp;<button  type="reset" class="cancelbtn">Cancel</button>
     <label><br>
-      <input type="checkbox" checked="checked" name="remember"> Remember me&ensp;&ensp;  <a href="userlog.jsp">Sign-Up</a>
+      <input type="checkbox" checked="checked" name="remember"> Remember me&ensp;&ensp;  <a href="userlog.jsp">Sign-In</a>
     
     </label>
         

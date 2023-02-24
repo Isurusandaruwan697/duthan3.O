@@ -1,20 +1,20 @@
 <%-- 
-    Document   : userReg
-    Created on : Feb 24, 2023, 1:23:34 PM
+    Document   : adminReg
+    Created on : Feb 24, 2023, 2:47:50 PM
     Author     : User
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>UserRegistration</title>
+    
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>AdminRegistration</title>
     </head>
     <body>
            <input type="hidden" id="status" value="<%=request.getAttribute("status") %>">
                 
-              <form action="userReg" method="post">
+              <form action="adminReg" method="post">
                <center>
  
        <h1>User Registration</h1>
@@ -33,7 +33,7 @@
         
     <button type="submit">Register</button>&ensp;&ensp;<button  type="reset" class="cancelbtn">Cancel</button>
     <label><br>
-      <input type="checkbox" checked="checked" name="remember"> Remember me&ensp;&ensp;  <a href="userlog.jsp">Sign-In</a>
+      <input type="checkbox" checked="checked" name="remember"> Remember me&ensp;&ensp;  <a href="adminlog.jsp">Sign-Up</a>
     
     </label>
         

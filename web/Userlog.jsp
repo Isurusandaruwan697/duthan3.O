@@ -28,7 +28,7 @@
     <button type="submit">Login</button>&ensp;&ensp;<button  type="reset" class="cancelbtn">Cancel</button><br><br>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me&ensp;&ensp;
-     <a href="userReg.jsp">Sign-In</a>
+     <a href="userReg.jsp">Sign-Up</a>
     </label>
         
   </div>

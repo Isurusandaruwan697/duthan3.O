@@ -3,27 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user;
+package admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author User
  */
-@WebServlet(name = "userLog", urlPatterns = {"/userLog"})
-public class userLog extends HttpServlet {
+@WebServlet(name = "adminReg", urlPatterns = {"/adminReg"})
+public class adminReg extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +42,10 @@ public class userLog extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet userLog</title>");            
+            out.println("<title>Servlet adminReg</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet userLog at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet adminReg at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -77,39 +77,39 @@ public class userLog extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
-        String email=request.getParameter("username");
+        //processRequest(request, response);
+             String user=request.getParameter("uname");
+       String email=request.getParameter("email");
+       String mobile=request.getParameter("mobile");
        String pass=request.getParameter("psw");
-       HttpSession session=request.getSession();
-       RequestDispatcher dispatcher=null;
+        RequestDispatcher dispatcher=null;
        
         try {
-            
+             Statement st ;
+
+                   
+
             Class.forName("com.mysql.jdbc.Driver");
-            java.sql.Connection con=(java.sql.Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/duathan?useSSL=false","root","");
-            PreparedStatement pst=con.prepareStatement("select * from user where email=? and pass=?");
-            pst.setString(1, email);
-            pst.setString(2, pass);
-            
-             ResultSet rs=pst.executeQuery();
-             
-              if(rs.next()){
-             session.setAttribute("uname",rs.getString("name"));
-             dispatcher = request.getRequestDispatcher("userDash.jsp");
-             
-             session.setAttribute("email",rs.getString("email"));
-                session.setAttribute("mobile",rs.getString("mobile"));
-                 session.setAttribute("pass",rs.getString("pass"));
-             
-         }else{
-             request.setAttribute("status", "failed");
-             dispatcher = request.getRequestDispatcher("Userlog.jsp");
-             
-         }
-               dispatcher.forward(request,response);
+            Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/duathan?useSSL=false","root","");
+            PreparedStatement pst=con.prepareStatement("insert into user(name,email,mobile,pass) values (?,?,?,?)");
+            pst.setString(1, user);
+                        pst.setString(2, email);
+                                    pst.setString(3, mobile);
+                                                pst.setString(4, pass);
+                                                
+                                                int rowCount = pst.executeUpdate();
+                                                dispatcher=request.getRequestDispatcher("userReg.jsp");
+                                                if(rowCount>0){
+                                                    request.setAttribute("status", "sucuss");
+                                                }
+                                                else{
+                                                    request.setAttribute("status", "faild");
+
+                                                }
+         
+            dispatcher.forward(request, response);
             
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

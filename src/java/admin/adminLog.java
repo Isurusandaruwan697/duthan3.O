@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user;
+package admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,8 +22,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author User
  */
-@WebServlet(name = "userLog", urlPatterns = {"/userLog"})
-public class userLog extends HttpServlet {
+@WebServlet(name = "adminLog", urlPatterns = {"/adminLog"})
+public class adminLog extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +42,10 @@ public class userLog extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet userLog</title>");            
+            out.println("<title>Servlet adminLog</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet userLog at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet adminLog at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -77,7 +77,7 @@ public class userLog extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
+        //processRequest(request, response);
         String email=request.getParameter("username");
        String pass=request.getParameter("psw");
        HttpSession session=request.getSession();
